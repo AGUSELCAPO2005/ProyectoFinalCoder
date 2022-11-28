@@ -1,1 +1,2 @@
 # ProyectoFinalCoder
+.\scripts\activate
