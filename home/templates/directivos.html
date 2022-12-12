@@ -1,0 +1,17 @@
+{% extends 'profes.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+<h1>Vista de directivos</h1>
+
+<h4>Aca esta la lista de directivos:</h4>
+    
+<ul>
+    {% for directivo in lista_directivos %}
+        <li>{{directivo.nombre}} {{directivo.apellido}} - {{directivo.cargo}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock contenidoQueCambia %}
