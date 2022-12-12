@@ -1,2 +1,2 @@
 # ProyectoFinalCoder
-.\scripts\activate
+env\scripts\activate
