@@ -1,2 +1,2 @@
 # ProyectoFinalCoder
-env\scripts\activate
+Este trabajo esta orientado de manera basica a poder visualizar los alumnos (1 por categoria con diferentes categorias), desde la parte de los staff y superuser se puede relizar la visualizacion de las listas de alumnos de manera más simple sin ir a la consola de admin y desde la parte de usuario podemos visualizar las listas de alumnos, directivos y categorias

@@ -7,6 +7,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -32,25 +35,27 @@ def alumno(request, apellido, nombre, categoria):
 def inicio(request):
    return render(request, "inicio.html")  
 
+@login_required(login_url="/academiadefutbol/login")
 def directivos(request):
    lista= Directivo.objects.all
    return render(request, "directivos.html", {"lista_directivos": lista})
    
-
+@login_required
 def categorias(request):
    return render(request, "categorias.html")
 
+@login_required
 def alumnos(request):
    
    lista = Alumno.objects.all()
    return render(request, "alumnos.html", {"lista_alumnos": lista})
-def torneos(request):
-   return render(request, "torneos.html")
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def lista_alumnos(request):
    lista = Alumno.objects.all()
    return render(request, "alumnos.html", {"lista_alumnos": lista})
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def lista_directivos(request):
    lista = Directivo.objects.all()
    return render(request, "profesores.html", {"lista_directivos": lista})
@@ -71,6 +76,7 @@ def alumnoFormulario(request):
       mi_formulario= AlumnoFormulario()
    return render(request, 'alumnoFormulario.html', {'mi_formulario': mi_formulario})
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def busqueda_alumno(request):
    return render(request, 'busqueda_categoria.html')
 
@@ -79,11 +85,13 @@ def buscar(request):
    alumno= Alumno.objects.get(categoria=alumno_buscado)
    return render(request, 'resultadobusqueda.html', {'alumno': alumno, 'categoria': alumno_buscado})
    #solo funciona con categorias de un alumno
-   
+
+@staff_member_required(login_url="/academiadefutbol/login")   
 def listadirectivos(request):
     directivos= Directivo.objects.all
     return render(request, "leerDirectivos.html", {"directivos": directivos})
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def crea_directivo(request):
 
    if request.method == 'POST':
@@ -100,6 +108,7 @@ def crea_directivo(request):
       mi_formulario= DirectivoFormulario()
    return render(request, 'directivoFormulario.html', {'mi_formulario': mi_formulario})
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def eliminarDirectivo(request, id):
 
    if request.method == 'POST':
@@ -113,6 +122,7 @@ def eliminarDirectivo(request, id):
       mi_formulario= DirectivoFormulario()
    return render(request, 'directivoFormulario.html', {'mi_formulario': mi_formulario})
 
+@staff_member_required(login_url="/academiadefutbol/login")
 def editar_directivo(request, id):
    
    directivo=Directivo.objects.get(id=id)
@@ -136,7 +146,7 @@ def editar_directivo(request, id):
       })
    return render(request, 'editardirectivo.html', {'mi_formulario': mi_formulario, "id": directivo.id})
 
-class AlumnoList(ListView):
+class AlumnoList(LoginRequiredMixin, ListView):
    model= Alumno
    template_name= "alumno_list.html"
    context_object_name= "alumnos"
@@ -191,7 +201,7 @@ def register(request):
       if mi_formulario.is_valid():
          username= mi_formulario.cleaned_data["username"]
          
-         mi_formulario.save
+         mi_formulario.save()
    
          return render(request, 'inicio.html', {"mensaje": f'Usuario {username} fue creado'})
       else:
