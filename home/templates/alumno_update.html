@@ -8,8 +8,8 @@
     <form action="{% url 'CrearAlumno' %}" method="POST">{% csrf_token %}
 
         {{form.as_p}}
+        <input type="submit" value="Actualizar"></button>
 
-        <input type="submit" value="Enviar">
 
     </form>
 

@@ -5,7 +5,7 @@
 
 {% block contenidoQueCambia %}
 
-    <form action="{% url 'CrearAlumno' %}" method="POST">{% csrf_token %}
+    <form method="POST">{% csrf_token %}
 
         <p> Esta seguro que desea eliminar el alumno? </p>
 

@@ -1,6 +1,7 @@
 
 from django.urls import path
-from .views import inicio, directivos, categorias, alumnos, torneos, alumnoFormulario, buscar, busqueda_alumno, listadirectivos, crea_directivo, eliminarDirectivo, editar_directivo, AlumnoList, AlumnoDetail, AlumnoCreate, AlumnoDelete, AlumnoUpdate
+from .views import register, loginView, inicio, directivos, categorias, alumnos, torneos, alumnoFormulario, buscar, busqueda_alumno, listadirectivos, crea_directivo, eliminarDirectivo, editar_directivo, AlumnoList, AlumnoDetail, AlumnoCreate, AlumnoDelete, AlumnoUpdate
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', inicio, name="Inicio"),
@@ -20,4 +21,7 @@ urlpatterns = [
     path('creaalumno/', AlumnoCreate.as_view(), name="CrearAlumno"),
     path('actualizaralumno/<pk>', AlumnoUpdate.as_view(), name="ActualizarAlumno"),
     path('eliminaralumno/<pk>', AlumnoDelete.as_view(), name="EliminarAlumno"),
+    path('login/', loginView, name="Login"),
+    path('registrar/', register, name="Registro"),
+    path('logout/', LogoutView.as_view(template_name="logout.html"), name="CerrarSesion"),
 ]
