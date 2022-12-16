@@ -1,0 +1,30 @@
+{% extends 'profes.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <h1>Lista de alumnos</h1>
+
+    <ul>
+        
+        {% for alumno in alumnos %}
+            <li>
+                <a href="{% url 'DetalleAlumno' alumno.id %}">
+                    {{alumno}}
+                </a>
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EliminarAlumno' alumno.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'ActualizarAlumno' alumno.id %}">Editar</a>
+                </button>
+        {% endfor %}
+    <ul>
+            
+
+
+{% endblock contenidoQueCambia %}

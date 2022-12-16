@@ -1,0 +1,16 @@
+{% extends 'profes.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <form action="{% url 'EditarDirectivo' id %}" method="POST">{% csrf_token %}
+
+        {{ mi_formulario.as_p }}
+
+        <input type="submit" value="Actualizar">
+
+    </form>
+
+{% endblock contenidoQueCambia %}

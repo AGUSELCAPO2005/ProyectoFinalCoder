@@ -1,0 +1,15 @@
+{% extends 'profes.html' %}
+
+{% load static %}
+
+
+{% block contenidoQueCambia %}
+
+    <form action= "{% url 'buscar' %}" method="GET">{% csrf_token %}
+        <p>Ingrese la categoria del alumno que busca: <input type= "number" name="categoria"/> </p>
+        
+        <input type= "submit" value="Busqueda de categoria"/>
+    </form>
+
+{% endblock contenidoQueCambia %}
+    
