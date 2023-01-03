@@ -3,3 +3,4 @@ Este trabajo esta orientado de manera basica a poder visualizar los alumnos (1 p
 Aclaracion: la funcion busqueda solo sirve si en la categoria buscada hay un solo alumno.
 Aclaracion 2: la funcion para registrar un usuario realmente no sirve y no genera el usuario.
 Aclaracion 3: Las funciones de la clase de playground avanzado 3 no estan implementadas por cuestiones de tiempo y de dificultad.
+https://youtu.be/DCZzKWNT38o
